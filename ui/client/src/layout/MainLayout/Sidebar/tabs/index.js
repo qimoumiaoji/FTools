@@ -5,6 +5,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { InsertEmoticonOutlined, ExtensionOutlined, AppsOutlined, MonitorOutlined } from '@mui/icons-material';
+import Loadable from '../../../../ui-component/Loadable';
+import { lazy } from 'react';
 
 // ==============================|| MAIN CONTENT/TABS ||============================== //
 
@@ -36,6 +38,8 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
+    const DappsPage = Loadable(lazy(() => import('views/dapps/appsPage')));
+
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -53,13 +57,13 @@ export default function BasicTabs() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                Item One
+                开发中...
             </TabPanel>
             <TabPanel value={value} index={1}>
                 Item Two
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                <DappsPage />
             </TabPanel>
         </Box>
     );
