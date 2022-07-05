@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Grid, Typography, Avatar } from '@mui/material';
+import { Grid, Typography, Avatar, Card } from '@mui/material';
 
 export default function NestedGrid(props) {
     const { gridData } = props;
 
     return (
         <>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
                 {gridData.map((row) => (
                     <Grid
                         item
@@ -16,15 +16,17 @@ export default function NestedGrid(props) {
                             window.open(row.url);
                         }}
                     >
-                        <Grid item xs={3}>
-                            <div style={{ width: '100%', float: 'left' }}>
-                                <Avatar alt="complex" src={row.image} />
+                        <Card style={{ background: 'white' }} variant="outlined">
+                            <div style={{ display: 'flex', alignItems: 'center', height: '80px' }}>
+                                <div style={{ width: '100%', marginLeft: '5px' }}>
+                                    <Avatar alt="complex" src={row.image} style={{ float: 'left' }} />
+                                    <div style={{ marginLeft: '45px' }}>
+                                        <Typography variant="h4">{row.name.trim()}</Typography>
+                                        <Typography noWrap="true">{row.desc.trim()}</Typography>
+                                    </div>
+                                </div>
                             </div>
-                        </Grid>
-                        <Grid item xs={9} style={{ marginLeft: '25%' }}>
-                            <Typography variant="h4">{row.name.trim()}</Typography>
-                            <Typography noWrap="true">{row.desc.trim()}</Typography>
-                        </Grid>
+                        </Card>
                     </Grid>
                 ))}
             </Grid>
