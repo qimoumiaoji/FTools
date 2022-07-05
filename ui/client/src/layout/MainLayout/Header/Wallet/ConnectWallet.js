@@ -31,7 +31,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import config from 'config';
 import ToastService from 'react-material-toast';
-import api from 'api/api';
 
 const toast = ToastService.new({
     place: 'topRight',
@@ -274,10 +273,6 @@ function ConnectWallet(props) {
                         setAddress(ens || formatAddress(address));
                         set('address', ens || formatAddress(address));
                         set('fullAddress', address);
-
-                        if (address) {
-                            await api.registerWallet({ address });
-                        }
 
                         web3Instance.on('accountsChanged', async (accounts) => {
                             if (accounts.length === 0) {
